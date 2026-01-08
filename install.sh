@@ -28,7 +28,7 @@ fi
 
 echo "Settings:"
 echo "Setting folder to ${WALLPAPER_DIR}"
-echo "Timer set to $(( WALLPAPER_TIMER / 60 )) minutes (${WALLPAPER_TIMER} seconds)"
+echo "Timer set to $(( WALLPAPER_TIMER / 60 )) minutes"
 
 INSTALL_DIR="${HOME}/.local/share/dualWallpaper"
 SYSTEMD_DIR="${HOME}/.config/systemd/user"
