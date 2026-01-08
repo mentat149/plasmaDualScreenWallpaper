@@ -1,0 +1,7 @@
+# ~/.config/systemd/user/wallpaper-update.service
+[Unit]
+Description=Display dual screen wallpaper
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/python3 ${HOME}/.local/share/dualWallpaper/dualWallpaper.py {WALLPAPER_DIR}

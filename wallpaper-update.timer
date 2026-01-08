@@ -1,0 +1,9 @@
+[Unit]
+Description=Update dual screen wallpaper
+
+[Timer]
+OnCalendar=*:0/{WALLPAPER_TIMER}
+Unit=wallpaper-update.service
+
+[Install]
+WantedBy=timers.target
