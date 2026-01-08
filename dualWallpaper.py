@@ -16,7 +16,7 @@ import random
 import glob
 
 # === CONFIGURATION ===
-# BIG_IMAGE = "/home/mentat/nextcloud/personalization/wallpapers/Dual/sonic.jpg"
+TEMP_DIR = str(pathlib.Path.home())+"/.local/share/dualWallpapers/wallpaper_crops"
 
 def get_random_picture(directory):
     """Find all image files in directory and subdirectories, return random one"""
@@ -32,9 +32,6 @@ def get_random_picture(directory):
     if not image_files:
         return None
     return random.choice(image_files)
-
-
-TEMP_DIR = "/tmp/plasma_wallpaper_crops"
 
 def resize_to_virtual_canvas(img, virtual_width, virtual_height):
     """Resize image to exactly fill virtual canvas."""
@@ -95,15 +92,23 @@ def get_monitor_geometries_and_desktops():
     return []
 
 def apply_spanning_wallpaper():
-    """Complete workflow: resize → crop → set all monitors."""
-
     # Setup
+    old_image = ''
     if os.path.exists(TEMP_DIR):
+        try:
+            old_image = pathlib.Path(os.listdir(TEMP_DIR)[0]).stem.replace('_crop_00','')
+        except:
+            pass
         shutil.rmtree(TEMP_DIR)
     os.makedirs(TEMP_DIR, exist_ok=True)
-
+    BIG_IMAGE = get_random_picture(sys.argv[1])
     if not pathlib.Path(BIG_IMAGE).is_file():
         raise FileNotFoundError(f"❌ Big image not found: {BIG_IMAGE}")
+
+    if old_image == pathlib.Path(BIG_IMAGE).stem:
+        BIG_IMAGE = get_random_picture(sys.argv[1])
+        if not pathlib.Path(BIG_IMAGE).is_file():
+            raise FileNotFoundError(f"❌ Big image not found: {BIG_IMAGE}")
 
     print("📊 Detecting monitors...")
     desktop_info = get_monitor_geometries_and_desktops()
@@ -119,7 +124,7 @@ def apply_spanning_wallpaper():
     max_x = max([ i['x']+i['width'] for i in desktop_info ])
     min_y = min([ i['y'] for i in desktop_info ])
     max_y = max([ i['y']+i['height'] for i in desktop_info ])
-    TARGET_VIRTUAL_WIDTH = max_x-min_x
+    TARGET_VIRTUAL_WIDTH  = max_x-min_x
     TARGET_VIRTUAL_HEIGHT = max_y-min_y
     # Load and resize big image
     print(f"\n🖼️  Loading: {BIG_IMAGE}")
@@ -183,7 +188,6 @@ def apply_spanning_wallpaper():
 
 if __name__ == "__main__":
     try:
-        BIG_IMAGE = get_random_picture(sys.argv[1])
         apply_spanning_wallpaper()
     except Exception as e:
         print(f"\n❌ ERROR: {e}")
