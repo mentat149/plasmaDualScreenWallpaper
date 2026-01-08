@@ -3,7 +3,7 @@
 ##### USER SETTINGS - CHANGE THESE BEFORE RUNNING #####
 
 # Absolute directory pointing to directory to pull wallpapers from
-WALLPAPER_DIR=${HOME}/nextcloud/personalization/wallpapers/Dual
+WALLPAPER_DIR=/path/to/wallpapers/folder
 
 # Time in minutes between switching backgrounds. Set to -1 to disable timer
 # When timer is disabled, run the script manually via 'systemctl --user start wallpaper-update.service'
