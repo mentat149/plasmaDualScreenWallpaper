@@ -7,16 +7,14 @@ A simple Python script to create a slideshow from multi-screen wallpapers that s
 ```
 git clone https://github.com/mentat149/plasmaDualScreenWallpaper
 ```  
-2. Open install.sh and edit the variables at the top.  
-WALLPAPER_DIR - point to folder to grab  
-WALLPAPER_TIMER - the time between wallpaper update, set to -1 to ignore if you just want to run once.   Can be run manually via  
+
+2. cd into directory and run install script:  
 ```
-systemctl --user start wallpaper-update.service
-```  
-3. cd into directory and run install.sh  
+cd plasmaDualScreenWallpaper
+source install.sh /path/to/wallpapers [timer]
 ```
-source install.sh
-```  
+    
+    Change the path to where you want it to grab the wallpapers from and set time in minutes (default 60).
 
 ## Uninstall
 

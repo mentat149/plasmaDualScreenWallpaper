@@ -1,19 +1,33 @@
 #!/usr/bin/env bash
 
-##### USER SETTINGS - CHANGE THESE BEFORE RUNNING #####
+usage() {
+    echo "Usage: source install.sh INPUT_DIR [TIMER]"
+    echo ""
+    echo "INPUT_DIR     Required: wallpaper directory"
+    echo "TIMER         Optional: time between wallpaper changes - default 60"
+    echo ""
+    echo "Example: source install.sh /home/user/Pictures 30"
+}
 
-# Absolute directory pointing to directory to pull wallpapers from
-WALLPAPER_DIR=/path/to/wallpapers/folder
 
-# Time in minutes between switching backgrounds. Set to -1 to disable timer
-# When timer is disabled, run the script manually via 'systemctl --user start wallpaper-update.service'
-WALLPAPER_TIMER=15
+if [ ! -d "$1" ]; then
+    echo "Error: Directory $dir not found"
+    echo
+    usage
+    return 1
+fi
 
-#######################################################
+WALLPAPER_DIR=$1
+
+if [ -z "$2" ]; then
+    WALLPAPER_TIMER=5
+else
+    WALLPAPER_TIMER=$2
+fi
 
 echo "Settings:"
-echo "WALLPAPER FOLDER = ${WALLPAPER_DIR}"
-echo "WALLPAPER TIMER = ${WALLPAPER_TIMER} minutes"
+echo "Setting folder to ${WALLPAPER_DIR}"
+echo "Timer set to ${WALLPAPER_TIMER} minutes"
 
 INSTALL_DIR="${HOME}/.local/share/dualWallpaper"
 SYSTEMD_DIR="${HOME}/.config/systemd/user"
