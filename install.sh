@@ -20,7 +20,7 @@ fi
 WALLPAPER_DIR=$1
 
 if [ -z "$2" ]; then
-    WALLPAPER_TIMER=5
+    WALLPAPER_TIMER=60
 else
     WALLPAPER_TIMER=$2
 fi
