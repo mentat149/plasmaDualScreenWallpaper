@@ -9,6 +9,7 @@ usage() {
     echo "Example: source install.sh /home/user/Pictures 30"
 }
 
+source uninstall.sh
 
 if [ ! -d "$1" ]; then
     echo "Error: Directory $dir not found"
@@ -20,14 +21,14 @@ fi
 WALLPAPER_DIR=$1
 
 if [ -z "$2" ]; then
-    WALLPAPER_TIMER=60
+    declare -i WALLPAPER_TIMER=60*60
 else
-    WALLPAPER_TIMER=$2
+    declare -i WALLPAPER_TIMER=$2*60
 fi
 
 echo "Settings:"
 echo "Setting folder to ${WALLPAPER_DIR}"
-echo "Timer set to ${WALLPAPER_TIMER} minutes"
+echo "Timer set to $(( WALLPAPER_TIMER / 60 )) minutes (${WALLPAPER_TIMER} seconds)"
 
 INSTALL_DIR="${HOME}/.local/share/dualWallpaper"
 SYSTEMD_DIR="${HOME}/.config/systemd/user"
@@ -50,4 +51,5 @@ else
     sed "s/{WALLPAPER_TIMER}/${WALLPAPER_TIMER}/g" wallpaper-update.timer > ${SYSTEMD_DIR}/wallpaper-update.timer
     systemctl daemon-reload --user
     systemctl enable --now wallpaper-update.timer --user
+    systemctl start --user wallpaper-update.service
 fi

@@ -2,7 +2,7 @@
 Description=Update dual screen wallpaper
 
 [Timer]
-OnCalendar=*:0/{WALLPAPER_TIMER}
+OnActiveSec={WALLPAPER_TIMER}
 Unit=wallpaper-update.service
 
 [Install]

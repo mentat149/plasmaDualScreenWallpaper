@@ -1,6 +1,7 @@
 # ~/.config/systemd/user/wallpaper-update.service
 [Unit]
 Description=Display dual screen wallpaper
+StartLimitIntervalSec=15
 
 [Service]
 Type=oneshot
