@@ -15,7 +15,7 @@ systemctl --user start wallpaper-update.service
 ```  
 3. cd into directory and run install.sh  
 ```
-cd plasmaDualScreenWallpaper && source install.sh
+source install.sh
 ```  
 
 ## Uninstall
