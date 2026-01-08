@@ -13,8 +13,7 @@ git clone https://github.com/mentat149/plasmaDualScreenWallpaper
 cd plasmaDualScreenWallpaper
 source install.sh /path/to/wallpapers [timer]
 ```
-    
-    Change the path to where you want it to grab the wallpapers from and set time in minutes (default 60).
+Change the path to where you want it to grab the wallpapers from and set time in minutes (default 60).
 
 ## Uninstall
 
