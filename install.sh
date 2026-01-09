@@ -40,11 +40,11 @@ if [ ! -d ${SYSTEMD_DIR} ]; then
     mkdir -p  ${SYSTEMD_DIR}
 fi
 
-cp ./dualWallpaper.py ${INSTALL_DIR}
+cp dualWallpaper.py ${INSTALL_DIR}
 
 sed "s|{WALLPAPER_DIR}|${WALLPAPER_DIR}|g" wallpaper-update.service > ${SYSTEMD_DIR}/wallpaper-update.service
 
-if [ $WALLPAPER_TIMER -eq -1 ]; then
+if [ $WALLPAPER_TIMER -eq -60 ]; then
     systemctl daemon-reload --user
     systemctl start --user wallpaper-update.service
 else

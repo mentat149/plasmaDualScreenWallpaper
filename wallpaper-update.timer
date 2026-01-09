@@ -2,8 +2,10 @@
 Description=Update dual screen wallpaper
 
 [Timer]
-OnActiveSec={WALLPAPER_TIMER}
+OnUnitActiveSec={WALLPAPER_TIMER}
+OnBootSec=60s
 Unit=wallpaper-update.service
+Persistent=true
 
 [Install]
 WantedBy=timers.target
