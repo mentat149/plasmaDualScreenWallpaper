@@ -48,10 +48,11 @@ def resize_to_virtual_canvas(img, virtual_width, virtual_height):
     resized = img.resize((new_w, new_h), Image.LANCZOS)
 
     # Center crop to exact size
-    left = (new_w - virtual_width) // 2
-    top = (new_h - virtual_height) // 2
-    right = left + virtual_width
-    bottom = top + virtual_height
+    center_x,center_y = new_w//2,new_h//2
+    left = center_x - virtual_width//2
+    top = center_y - virtual_height//2
+    right = center_x + virtual_width//2
+    bottom = center_y + virtual_height//2
 
     final = resized.crop((left, top, right, bottom))
     print(f"   Resized to virtual canvas: {virtual_width}x{virtual_height}")
@@ -133,17 +134,12 @@ def apply_spanning_wallpaper():
     max_y = max([ i['y']+i['height'] for i in desktop_info ])
     TARGET_VIRTUAL_WIDTH  = max_x-min_x
     TARGET_VIRTUAL_HEIGHT = max_y-min_y
+
     # Load and resize big image
     print(f"\n🖼️  Loading: {BIG_IMAGE}")
     big_img = Image.open(BIG_IMAGE)
     big_img = resize_to_virtual_canvas(big_img, TARGET_VIRTUAL_WIDTH, TARGET_VIRTUAL_HEIGHT)
-
     image_prefix = pathlib.Path(BIG_IMAGE).stem
-    # Update virtual size based on actual monitors (if different)
-    total_width = sum(info['width'] for info in desktop_info)
-    if total_width != TARGET_VIRTUAL_WIDTH:
-        print(f"⚠️  Monitor total width {total_width} ≠ target {TARGET_VIRTUAL_WIDTH}")
-        TARGET_VIRTUAL_WIDTH = total_width
 
     # Crop for each monitor
     print("\n✂️  Cropping images...")

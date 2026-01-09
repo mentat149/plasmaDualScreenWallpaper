@@ -1,6 +1,9 @@
 # plasmaDualScreenWallpaper
 A simple Python script to create a slideshow from multi-screen wallpapers that span across multiple monitors
 
+
+I only have 2 monitors side-by-side to test with, but it should work with more. The script looks at the total virtual desktop size, blows up the image to match, with a center crop if needed, and cuts the image based on the position of each monitor.
+
 ## Install
 
 1. Clone the repo and cd into directory:  
@@ -25,3 +28,4 @@ If you don't want a slideshow and just want to set a single wallpaper, just run 
 ```
 python wallpaper.py /path/to/image.jpg
 ```
+
