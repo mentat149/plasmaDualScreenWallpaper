@@ -14,8 +14,8 @@ if [ -f ${SYSTEMD_DIR}/wallpaper-update.timer ]; then
     systemctl --user disable --now wallpaper-update.timer
 fi
 
-remove_file(${SYSTEMD_DIR}/wallpaper-update.service)
-remove_file(${SYSTEMD_DIR}/wallpaper-update.timer)
+remove_file ${SYSTEMD_DIR}/wallpaper-update.service
+remove_file ${SYSTEMD_DIR}/wallpaper-update.timer
 
 if [ -d ${INSTALL_DIR} ]; then
     echo "Deleting directory ${INSTALL_DIR}"
