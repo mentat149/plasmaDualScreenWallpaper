@@ -18,3 +18,10 @@ Change the path to where you want it to grab the wallpapers from and set time in
 ## Uninstall
 
 Just run ```source uninstall.sh``` to remove created files.
+
+## Single Image
+
+If you don't want a slideshow and just want to set a single wallpaper, just run the python script on its own:  
+```
+python wallpaper.py /path/to/image.jpg
+```

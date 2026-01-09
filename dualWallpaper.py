@@ -93,22 +93,29 @@ def get_monitor_geometries_and_desktops():
 
 def apply_spanning_wallpaper():
     # Setup
-    old_image = ''
-    if os.path.exists(TEMP_DIR):
-        try:
-            old_image = pathlib.Path(os.listdir(TEMP_DIR)[0]).stem.replace('_crop_00','')
-        except:
-            pass
-        shutil.rmtree(TEMP_DIR)
-    os.makedirs(TEMP_DIR, exist_ok=True)
-    BIG_IMAGE = get_random_picture(sys.argv[1])
-    if not pathlib.Path(BIG_IMAGE).is_file():
-        raise FileNotFoundError(f"❌ Big image not found: {BIG_IMAGE}")
-
-    if old_image == pathlib.Path(BIG_IMAGE).stem:
+    if os.path.isdir(sys.argv[1]):
+        old_image = ''
+        if os.path.exists(TEMP_DIR):
+            try:
+                old_image = pathlib.Path(os.listdir(TEMP_DIR)[0]).stem.replace('_crop_00','')
+            except:
+                pass
+            shutil.rmtree(TEMP_DIR)
+        os.makedirs(TEMP_DIR, exist_ok=True)
         BIG_IMAGE = get_random_picture(sys.argv[1])
         if not pathlib.Path(BIG_IMAGE).is_file():
             raise FileNotFoundError(f"❌ Big image not found: {BIG_IMAGE}")
+
+        if old_image == pathlib.Path(BIG_IMAGE).stem:
+            BIG_IMAGE = get_random_picture(sys.argv[1])
+            if not pathlib.Path(BIG_IMAGE).is_file():
+                raise FileNotFoundError(f"❌ Big image not found: {BIG_IMAGE}")
+    elif os.path.isfile(sys.argv[1]):
+        BIG_IMAGE = sys.argv[1]
+        if not pathlib.Path(BIG_IMAGE).is_file():
+            raise FileNotFoundError(f"❌ Big image not found: {BIG_IMAGE}")
+    else:
+        raise FileNotFoundError(f"❌ Big image not found: {BIG_IMAGE}")
 
     print("📊 Detecting monitors...")
     desktop_info = get_monitor_geometries_and_desktops()
