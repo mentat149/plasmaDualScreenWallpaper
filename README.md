@@ -31,6 +31,6 @@ Just run ```source uninstall.sh``` to remove created files.
 
 If you don't want a slideshow and just want to set a single wallpaper, either set the timer to -1, or run the python script and point it to any image:  
 ```
-python wallpaper.py /path/to/image.jpg
+python dualWallpaper.py /path/to/image.jpg
 ```
 
