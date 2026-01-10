@@ -18,13 +18,18 @@ source install.sh /path/to/wallpapers [timer]
 ```
 Change the path to where you want it to grab the wallpapers from and set time in minutes (default 60).
 
+The image can be changed manually at any time by running  
+```
+systemctl start wallpaper-update.service --user
+```
+
 ## Uninstall
 
 Just run ```source uninstall.sh``` to remove created files.
 
 ## Single Image
 
-If you don't want a slideshow and just want to set a single wallpaper, just run the python script on its own:  
+If you don't want a slideshow and just want to set a single wallpaper, either set the timer to -1, or run the python script and point it to any image:  
 ```
 python wallpaper.py /path/to/image.jpg
 ```
