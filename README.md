@@ -14,7 +14,7 @@ cd plasmaDualScreenWallpaper
 
 2. Run the installer script:  
 ```
-source install.sh /path/to/wallpapers [timer]
+bash -c "source install.sh /path/to/wallpapers [timer]"
 ```
 Change the path to where you want it to grab the wallpapers from and set time in minutes (default 60).
 
@@ -25,7 +25,7 @@ systemctl start wallpaper-update.service --user
 
 ## Uninstall
 
-Just run ```source uninstall.sh``` to remove created files.
+Just run ```bash -c "source uninstall.sh"``` to remove created files.
 
 ## Single Image
 
