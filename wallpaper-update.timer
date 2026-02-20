@@ -1,6 +1,7 @@
 [Unit]
 Description=Update dual screen wallpaper
-After=graphical-session.target
+After=graphical.target
+WantedBy=graphical.target
 
 [Timer]
 OnUnitActiveSec={WALLPAPER_TIMER}
@@ -8,4 +9,4 @@ Unit=wallpaper-update.service
 Persistent=true
 
 [Install]
-WantedBy=graphical-session.target
+WantedBy=timers.target
